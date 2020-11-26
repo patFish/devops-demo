@@ -54,8 +54,8 @@ jobs:
         with:
           channel: "#devops"
           status: ${{ job.status }}
-          success_text: "Deployment (${{env.GITHUB_RUN_NUMBER}}) completed successfully"
-          failure_text: "Deployment  (${{env.GITHUB_RUN_NUMBER}}) failed"
-          cancelled_text: "Deployment  (${{env.GITHUB_RUN_NUMBER}}) was cancelled"
+          success_text: "Deployment (${env.GITHUB_RUN_NUMBER}) completed successfully"
+          failure_text: "Deployment  (${env.GITHUB_RUN_NUMBER}) failed"
+          cancelled_text: "Deployment  (${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
             [{ "title": "Staging Devops", "value": "#${env.PROJECT}"},{ "title": "Host", "value": "https://ewz-devops-demo-staging.azurewebsites.net/"}]
