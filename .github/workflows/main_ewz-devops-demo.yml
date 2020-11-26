@@ -34,4 +34,4 @@ jobs:
           app-name: "ewz-devops-demo"
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_074d6ad7aed24dcfabcd41b0e45ace1e }}
-          package: AZURE_WEBAPP_PACKAGE_PATH
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
