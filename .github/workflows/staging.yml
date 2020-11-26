@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - ewz-devops-demo
+name: Build staging
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "!master" # excludes master
 env:
   AZURE_WEBAPP_PACKAGE_PATH: "build" # set this to the path to your web app project, defaults to the repository root
 
@@ -32,6 +32,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: "ewz-devops-demo"
-          slot-name: "production"
+          slot-name: "staging"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_074d6ad7aed24dcfabcd41b0e45ace1e }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
