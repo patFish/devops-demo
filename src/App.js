@@ -16,6 +16,7 @@ function App() {
         >
           Learn React Dudes
         </a>
+        <p>Version: {process.env.GITHUB_REF || "vX.X.X"}</p>
       </header>
     </div>
   );

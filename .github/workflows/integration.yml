@@ -24,6 +24,11 @@ jobs:
         with:
           node-version: "12.x"
 
+      - name: test
+        run: echo $REF
+        env:
+          REF: ${{ env.GITHUB_REF }}
+
       - name: npm install, build, and test
         run: |
           npm install
