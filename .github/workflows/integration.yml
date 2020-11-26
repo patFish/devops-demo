@@ -6,7 +6,7 @@ name: Build integration
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "*"
 env:
   AZURE_WEBAPP_PACKAGE_PATH: "build" # set this to the path to your web app project, defaults to the repository root
 
