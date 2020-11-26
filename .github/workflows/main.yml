@@ -39,7 +39,7 @@ jobs:
           failure_text: "Build (#${env.GITHUB_RUN_NUMBER}) failed"
           cancelled_text: "Build (#${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
-            [{ "title": "Projekt", "value": "#${env.PROJECT}"}]
+            [{ "title": "Devops-Demo", "value": "#${env.PROJECT}"}]
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
@@ -58,4 +58,4 @@ jobs:
           failure_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) failed"
           cancelled_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
-            [{ "title": "Projekt", "value": "#${env.PROJECT}"},{ "title": "Host", "value": "https://ewz-devops-demo.azurewebsites.net/"}]
+            [{ "title": "Devops-Demo", "value": "#${env.PROJECT}"},{ "title": "Host", "value": "https://ewz-devops-demo.azurewebsites.net/"}]
