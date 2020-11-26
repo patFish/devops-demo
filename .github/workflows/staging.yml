@@ -33,5 +33,5 @@ jobs:
         with:
           app-name: "ewz-devops-demo"
           slot-name: "staging"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_074d6ad7aed24dcfabcd41b0e45ace1e }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9fcfc1159ca141f79a00a0107c71b675 }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
