@@ -31,7 +31,7 @@ jobs:
           npm run test --if-present
       - name: Build notification
         if: always()
-        uses: adamkdean/simple-slack-notify@master
+        uses: edge/simple-slack-notify@master
         with:
           channel: "#devops"
           status: ${{ job.status }}
@@ -50,7 +50,7 @@ jobs:
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
       - name: Deploy notification
         if: always()
-        uses: adamkdean/simple-slack-notify@master
+        uses: edge/simple-slack-notify@master
         with:
           channel: "#devops"
           status: ${{ job.status }}
