@@ -5,9 +5,8 @@ name: Build staging
 
 on:
   push:
-    branches:
-      - "**"
-      - "!master" # excludes master
+    branches-ignore:
+      - "main"
 env:
   AZURE_WEBAPP_PACKAGE_PATH: "build" # set this to the path to your web app project, defaults to the repository root
 
