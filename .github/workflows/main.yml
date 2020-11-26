@@ -9,6 +9,7 @@ on:
       - main
 env:
   AZURE_WEBAPP_PACKAGE_PATH: "build" # set this to the path to your web app project, defaults to the repository root
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
   build-and-deploy:
@@ -28,6 +29,18 @@ jobs:
           npm run build --if-present
           npm run test --if-present
 
+      - name: Build notification
+        if: always()
+        uses: adamkdean/simple-slack-notify@master
+        with:
+          channel: "#devops"
+          status: ${{ job.status }}
+          success_text: "Build (#${env.GITHUB_RUN_NUMBER}) completed successfully"
+          failure_text: "Build (#${env.GITHUB_RUN_NUMBER}) failed"
+          cancelled_text: "Build (#${env.GITHUB_RUN_NUMBER}) was cancelled"
+          fields: |
+            [{ "title": "Projekt", "value": "#${env.PROJECT}"}]
+
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         with:
@@ -35,3 +48,14 @@ jobs:
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_074d6ad7aed24dcfabcd41b0e45ace1e }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: Deploy notification
+        if: always()
+        uses: adamkdean/simple-slack-notify@master
+        with:
+          channel: "#devops"
+          status: ${{ job.status }}
+          success_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) completed successfully"
+          failure_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) failed"
+          cancelled_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) was cancelled"
+          fields: |
+            [{ "title": "Projekt", "value": "#${env.PROJECT}"},{ "title": "Host", "value": "https://ewz-devops-demo.azurewebsites.net/"}]
